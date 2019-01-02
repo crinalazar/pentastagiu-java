@@ -2,8 +2,8 @@ package StrategyGame;
 
 public enum Artifact {
 
-    ENERGY ( 5, 6.5, 5 ),
-    HEALTH ( 10, 3,1.5 );
+    ENERGY( 5, 6.5, 5 ),
+    HEALTH( 10, 3, 1.5 );
 
     private int extraPoints;
     private double xPos;
@@ -17,6 +17,12 @@ public enum Artifact {
 
     public int getExtraPoints() {
         return extraPoints;
+    }
+
+    public Artifact setArtifactPos(double xPos, double yPos) {
+        this.xPos = xPos;
+        this.yPOs = yPos;
+        return Artifact.this;
     }
 
 }
