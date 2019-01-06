@@ -7,7 +7,7 @@ public class Basket {
     double totalPrice;
     Customer customer;
     double price;
-    ArrayList<Products> products = new ArrayList<>();
+    ArrayList<ItemsToBuy> items = new ArrayList<>();
 
 
     Basket(Customer customer) {
@@ -15,23 +15,25 @@ public class Basket {
         this.customer = customer;
     }
 
-
     public double getProductsPrice() {
-        for (Products product : products)
-        totalPrice += product.price;
+        double itemPrice = 0;
+                for (ItemsToBuy item : items){
+            itemPrice = item.product.price * item.quantity;
+        totalPrice += itemPrice;}
         return totalPrice;
     }
 
-    public void addProduct(Products product) {
-        products.add( product);
+    public void addItems(ItemsToBuy item) {
+
+        items.add( item);
            }
 
            public void showBasketList (){
-        for (Products product : products) {
-            System.out.println("ID: " + product.getId() + " Item name: " + product.name + " Price: " + product.price);
+        for (ItemsToBuy item : items) {
+            System.out.println("ID: " + item.product.getId() + " Item name: " + item.product.name + " Price: "
+                    + item.product.price + " quantity: " + item.quantity);
         }
            }
-
 
 
     @Override

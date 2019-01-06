@@ -18,7 +18,6 @@ public class Products {
     }
 
 
-
     public String getId () {
         String id = "";
         double d;

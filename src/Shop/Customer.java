@@ -2,7 +2,7 @@ package Shop;
 import java.util.UUID;
 
 enum MEMBERSHIP {
-    GOLD, SILVER, NONE
+    GOLD, SILVER
 }
 
 public class Customer {
