@@ -64,11 +64,17 @@ public class Flight  {
     }
 
     public StatusEnum getFlightStatus() {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime( departureDate );
+        cal.add(Calendar.SECOND, 7200);
+        Date later = cal.getTime();
+
         if (flightDuration == 0){
             status = StatusEnum.CANCELED;}
        else if (departureDate.after( current )) {
             status = StatusEnum.SCHEDULED;
-        } else if ((departureDate.getTime() + flightDuration * 60) < current.getTime()) {
+        } else if (later.before( current ))          //((departureDate.getTime() + flightDuration * 60) < current.getTime())
+        {
             status = StatusEnum.FINISHED;
         }
         else {
