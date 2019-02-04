@@ -1,12 +1,14 @@
 package airportapp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 enum StatusEnum {SCHEDULED, CANCELED, FINISHED, PROCESSING}
-
+@Component
 public class Flight  {
 
     private String name;
@@ -16,17 +18,9 @@ public class Flight  {
     private int maxUserCapacity;
     private StatusEnum status;
     Date current = new Date();
-    Set <User> usersOnFlight;
+    @Autowired
+    HashSet <User> usersOnFlight;
 
-    public Flight(String name, String destination, String date, int flightDuration, int maxUserCapacity) {
-        this.name = name;
-        this.destination = destination;
-        setDate( date );
-        this.flightDuration = flightDuration;
-        this.maxUserCapacity = maxUserCapacity;
-        usersOnFlight = new HashSet<>();
-        getFlightStatus();
-    }
 
     public void showUsersOnFlight () {
         System.out.println("Users registered for flight: " + this.getName()+ " to " + this.destination);

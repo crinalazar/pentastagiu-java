@@ -1,7 +1,6 @@
 package airportapp;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class AirportMain {
@@ -19,7 +18,6 @@ public class AirportMain {
         flight.setMaxUserCapacity( 40 );
         flight.getFlightStatus();
 
-
         User user = context.getBean( User.class );
         user.setFName( "Rotariu" );
         user.setLName( "Cosmin" );
@@ -33,6 +31,7 @@ public class AirportMain {
         airportManager.flightsJoined( user );
         airportManager.getStatusFlights(StatusEnum.SCHEDULED);
         flight.showUsersOnFlight();
+
 
 
     }

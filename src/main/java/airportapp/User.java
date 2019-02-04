@@ -2,23 +2,18 @@ package airportapp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
-
+@Component
 public class User implements Comparable<User> {
 
     private String fname;
     private String lname;
     private Date birthDate;
-
-    public User(String fname, String lname, String birthDate) {
-        this.fname = fname;
-        this.lname = lname;
-        this.setBirthDate( birthDate );
-    }
 
     @Override
     public int compareTo(User user) {
