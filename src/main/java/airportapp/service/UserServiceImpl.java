@@ -5,12 +5,14 @@ import airportapp.model.UserEntity;
 import airportapp.repository.api.FlightRepository;
 import airportapp.repository.api.UserRepository;
 import airportapp.service.apiservice.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.Date;
 import java.util.Iterator;
 
 @Transactional
@@ -26,10 +28,12 @@ public class UserServiceImpl implements UserService {
 
 
   @Override
-    public UserEntity createUser(String email, String fname, String lname) {
-        UserEntity userEntity = new UserEntity(email, fname, lname);
+    public UserEntity createUser(String email, String fname, String lname, String birthDate) {
+        UserEntity userEntity = new UserEntity(email, fname, lname, birthDate);
         return userRepository.create(userEntity);
     }
+
+
 @Override
     public void removeUsersByEmail(String email) {
 
@@ -44,11 +48,15 @@ public class UserServiceImpl implements UserService {
     public void assignUserToFlight(String email, String flightName){
         FlightEntity flightEntity = flightRepository.findByName(flightName);
         UserEntity userEntity = userRepository.findByEmail(email);
-
+    if (flightEntity.getPassengers().size() < flightEntity.getMaxUserCapacity()) {
         flightEntity.getPassengers().add(userEntity);
-
         flightRepository.save(flightEntity);
+
+    } else {
+        System.out.println( "Could not add passenger. All seats reserved for flight: " + flightName );
     }
+}
+
 @Override
     public void removeUserToFlight(String email){
         Query q = entityManager.createQuery("select fl from FlightEntity fl");

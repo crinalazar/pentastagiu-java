@@ -19,7 +19,6 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     public void showListUsers() {
-        UserEntity u;
         if (entityManager == null){
             System.out.println("No registered users.");
         }
