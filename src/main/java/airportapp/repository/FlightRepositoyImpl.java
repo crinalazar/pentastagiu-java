@@ -39,13 +39,15 @@ public class FlightRepositoyImpl implements FlightRepository {
 
 @Override
     public void showListFlights() {
-        if (entityManager== null){
-            System.out.println("No registered flight.");
-        }
-        else {
+
             System.out.println( "\n" + "Flights: " );
             Query q = entityManager.createQuery("select fl from FlightEntity fl");
-            Iterator itr = q.getResultList().iterator();
+            List flights = q.getResultList();
+            if (flights.isEmpty()){
+                System.out.println("No registered flight.");
+            }
+            else{
+            Iterator itr = flights.iterator();
             FlightEntity fl;
             while (itr.hasNext()) {
                 fl = (FlightEntity) itr.next();
